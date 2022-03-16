@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from 'firebase/app';
 import {getFirestore} from 'firebase/firestore';
@@ -22,4 +22,3 @@ export{auth}
 
 
 
- 
