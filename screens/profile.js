@@ -11,7 +11,6 @@ import {
   Dimensions,
   ImageBackground,
   Switch,
-  Icon,
 } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -23,7 +22,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 
 
-const Settings = ({navigation}) => {
+const profile = ({navigation}) => {
   const [isEnabled,setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled (previousState=>!previousState)
   
@@ -57,69 +56,13 @@ const Settings = ({navigation}) => {
         </TouchableOpacity>  
      <Text style = {{color: "black", }}>  </Text>
         
-      </View> 
-    
-      
-
-     <TouchableOpacity>
-    <View style = {styles.settingsText}>
-      <Text> Login Information</Text>
-      <hr style = {{backgroundColor: "white",  width: 300,}}/> 
-    </View>
-    </TouchableOpacity> 
-      
-
-    <View style = {styles.settingsText}>
-      <View style={{ flexDirection: "row", justifyContent:"space-between" }}>
-      <Text> Mic On/Off  </Text>
-
-      
-      <Switch 
-      style = {styles.switchStyle}
-      trackColor = {{false: "grey", true: "green",}}
-      thumbColor = {isEnabled?"grey":"grey"}
-      ios_backgroundColor = "blue"
-       onValueChange = {toggleSwitch}
-       value = {isEnabled}
-        /> 
-       
-
       </View>
-      <hr style = {{backgroundColor: "white",  width: 300,}}/> 
-    </View>
-
-
-
-      
-      <View style = {styles.settingsText}
-      /*onPress={() => 
-      }*/>
-        <View style={{ flexDirection: "row", justifyContent:"space-between" }}>
-         <Text> Dark Mode </Text> 
-
-      <Switch 
-      style = {styles.switchStyle}
-      trackColor = {{false: "grey", true: "green",}}
-      thumbColor = {isEnabled1?"grey":"grey"}
-      onValueChange = {togSwitch}
-      value = {isEnabled1}
-        /> 
-        </View>
-
-         <hr style = {{backgroundColor: "white",  width: 300,}}/> 
+      <View style={styles.image}>
       </View>
+  
+ 
       
-
-    <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}>   
-      <View style = {styles.settingsText}>
-        <Text> Reset </Text> 
-     
-       <hr style = {{backgroundColor: "white",  width: 300,}}/>  
-      </View>
-     </TouchableOpacity> 
-      
-      <StatusBar style="auto"/>
+      <StatusBar style="auto" />
     
   </View>
     
@@ -137,15 +80,8 @@ const styles = StyleSheet.create({
     color: "black",
   },
  
-  settingsText: {
-     paddingTop: 70,
-     margin: 10,
-     height:50, 
-     width:250,
-    
-     borderColor: 'black',
-     
-     fontSize: 14
+  image: {
+     borderRadius: 50,
    },
   navbar: {
     flexDirection: 'row',
@@ -160,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default profile;
