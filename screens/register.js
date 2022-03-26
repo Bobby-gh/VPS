@@ -18,19 +18,34 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Feather';
 
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBXrR-VyOYOR8Y02Cla5igwgvpyLVr9FdM",
+  authDomain: "vocal-protection-seeker-1.firebaseapp.com",
+  projectId: "vocal-protection-seeker-1",
+  storageBucket: "vocal-protection-seeker-1.appspot.com",
+  messagingSenderId: "63383565184",
+  appId: "1:63383565184:web:3ff0002bd5f176a7440765",
+  measurementId: "G-8VFTHK4HC2"
+};
 
 
 
 
-
-const profile = ({navigation}) => {
+const Registration = ({navigation}) => {
     
     const [FullName, setfName] = useState('');
     const [Email, setemail] = useState('');
     const [Password, setPassword] = useState('');
     const [CPassword, setcPassword] = useState('');
-
-
+      
+      createUserWithAuth(auth,FullName,Email,Password,CPassword)
+      .then(userCredentials =>{
+        const user = userCredentials.user;
+        console.log(user.Email);
+      }).catch(err=>{
+        console.log(err)
+      })
+    
   return (  
   <View style={styles.container}> 
     
@@ -172,4 +187,4 @@ const styles = StyleSheet.create({
     }, 
 });
 
-export default profile;
+export default Registration;
