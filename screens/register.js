@@ -16,7 +16,12 @@ import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Feather';
+import { registerVersion } from 'firebase/app';
+import {getAuth,createUserWithEmailAndPassword} from 'firebase/auth'
 
+import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'firebase/app';
+import {getFirestore} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBXrR-VyOYOR8Y02Cla5igwgvpyLVr9FdM",
@@ -28,24 +33,30 @@ const firebaseConfig = {
   measurementId: "G-8VFTHK4HC2"
 };
 
-
+const app  = initializeApp(firebaseConfig);
 
 
 const Registration = ({navigation}) => {
-    
-    const [FullName, setfName] = useState('');
-    const [Email, setemail] = useState('');
-    const [Password, setPassword] = useState('');
-    const [CPassword, setcPassword] = useState('');
+  const auth = getAuth()
+  const [FullName, setfName] = useState('');
+  const [Email, setemail] = useState('');
+  const [Password, setPassword] = useState('');
+  const [CPassword, setcPassword] = useState('');
       
-      createUserWithAuth(auth,FullName,Email,Password,CPassword)
+    const register = () => {
+     
+      console.log("hi")
+      console.log(Email,Password)
+      
+      createUserWithEmailAndPassword(auth,Email,Password)
       .then(userCredentials =>{
         const user = userCredentials.user;
         console.log(user.Email);
       }).catch(err=>{
         console.log(err)
       })
-    
+      
+    }
   return (  
   <View style={styles.container}> 
     
@@ -73,7 +84,7 @@ const Registration = ({navigation}) => {
       <View style={styles.subcontainer}>
           
           <Text style={{paddingTop:45}}></Text>
-          <div>
+          
            
            <TextInput style = {styles.input}
                
@@ -81,10 +92,11 @@ const Registration = ({navigation}) => {
                placeholder = "Full Name"
                placeholderTextColor = "black"
                autoCapitalize = "none"
+               type ="text"
                value={FullName}
-               onChange={(e) => setfName(e.target.value)}
+               onChangeText = {text => setfName(text)}
                />
-            </div>
+            
             
           <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
@@ -93,7 +105,7 @@ const Registration = ({navigation}) => {
                autoCapitalize = "none"
                type="text" 
                value={Email}
-               onChange={(e) => setemail(e.target.value)}
+               onChangeText = {text => setEmail(text)}
                />
                
         
@@ -104,7 +116,7 @@ const Registration = ({navigation}) => {
                placeholderTextColor = "black"
                autoCapitalize = "none"
                value={Password}
-               onChange={(e) => setPassword(e.target.value)}
+               onChangeText = {text => setPassword(text)}
               secureTextEntry
                />
           <TextInput style = {styles.input}
@@ -113,11 +125,11 @@ const Registration = ({navigation}) => {
                placeholderTextColor = "black"
                autoCapitalize = "none"
                value={CPassword}
-               onChange={(e) => setcPassword(e.target.value)}
+               onChangeText = {text => setcPassword(text)}
                />
           <Text style={{paddingTop: 10,}}></Text>
            <TouchableOpacity style={styles.button}  
-          onPress={() => console.log("firebase")}>
+          onPress={() => register()}>
               <Text style={{fontWeight: "bold", color: "black",}}>Click to Register</Text>
           </TouchableOpacity>
           <Text style={{paddingTop: 20,}}></Text> 
