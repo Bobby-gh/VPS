@@ -12,7 +12,8 @@ import {
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import {getAuth,createUserWithEmailAndPassword} from 'firebase/auth'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
 
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from 'firebase/app';
@@ -37,9 +38,9 @@ const Login = ({navigation}) => {
     const auth = getAuth()
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
+    const [emailError,passwordError] = useState('false')
+
     const handlesLogin = () => {
-      console.log("hi")
-      console.log(Email,Password)
       
       createUserWithEmailAndPassword(auth,Email,Password)
       .then(userCredentials =>{
@@ -47,6 +48,7 @@ const Login = ({navigation}) => {
         console.log(user.Email);
       }).catch(err=>{
         console.log(err)
+        
       })
       
     }
@@ -78,7 +80,7 @@ const Login = ({navigation}) => {
                type="text" 
                value={Email}
                onChangeText = {text => setEmail(text)}
-                
+               
                />
             
           <TextInput style = {styles.input}
@@ -89,18 +91,23 @@ const Login = ({navigation}) => {
                value={Password}
                onChangeText = {text => setPassword(text)}
                secureTextEntry
+               
                />
                </View>
           <Text style={{paddingTop: 1,}}></Text> 
-          <View style={{justifyContent:"center", alignItems: 'center'}}>    
-          <TouchableOpacity style={styles.button}> 
+          <View style={{justifyContent:"center", alignItems: 'center'}}>  
+          
+          <TouchableOpacity style={styles.button}>  
+          
           <TouchableOpacity
            onPress={() => handlesLogin()}>
-              <Text style={{fontWeight: "bold", color: "#fff",}}>Login</Text>
+              <Text style={{fontWeight: "bold", color: "#fff",}}
+               onPress={() => navigation.navigate('Home')}>Login</Text>
           </TouchableOpacity> 
+
           </TouchableOpacity> 
           </View> 
-      </ImageBackground>
+      </ImageBackground> 
       <TouchableOpacity>
         <Text style={{color:"white", backgroundColor:"grey", alignItems:"center",}}>Forget Password ?
         </Text>

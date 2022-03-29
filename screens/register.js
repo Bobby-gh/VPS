@@ -105,7 +105,7 @@ const Registration = ({navigation}) => {
                autoCapitalize = "none"
                type="text" 
                value={Email}
-               onChangeText = {text => setEmail(text)}
+               onChangeText = {text => setemail(text)}
                />
                
         
@@ -126,11 +126,13 @@ const Registration = ({navigation}) => {
                autoCapitalize = "none"
                value={CPassword}
                onChangeText = {text => setcPassword(text)}
+               secureTextEntry
                />
           <Text style={{paddingTop: 10,}}></Text>
            <TouchableOpacity style={styles.button}  
           onPress={() => register()}>
-              <Text style={{fontWeight: "bold", color: "black",}}>Click to Register</Text>
+              <Text style={{fontWeight: "bold", color: "black",}}
+               onPress={() => navigation.navigate('Login')}>Click to Register</Text>
           </TouchableOpacity>
           <Text style={{paddingTop: 20,}}></Text> 
       </View>
