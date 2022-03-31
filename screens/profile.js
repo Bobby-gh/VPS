@@ -23,11 +23,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 
 const profile = ({navigation}) => {
-  const [isEnabled,setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled (previousState=>!previousState)
-  
-  const [isEnabled1,setIsEnabled1] = useState(false);
-  const togSwitch = () => setIsEnabled1 (previousState=>!previousState)  
+ 
   return (  
   <View style={styles.container}> 
     
@@ -47,17 +43,23 @@ const profile = ({navigation}) => {
         
         
          <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}>
-        <Image source = {require('../images/BackArrow.jpg')}
-                  style = {{ width: 25, height: 13, left: 1, top: 5,}}
-       
-        />
+            onPress={() => navigation.navigate('Home')}>
+            <Image source = {require('../images/BackArrow.jpg')}
+                      style = {{ width: 25, height: 13, left: 1, top: 5,}}
+          
+            />
        
         </TouchableOpacity>  
-     <Text style = {{color: "black", }}>  </Text>
+     
         
       </View>
-      <View style={styles.image}>
+
+      
+      <View style= {{justifyContent: "center", alignItems: "center", paddingTop:30,}}>
+          <Image source = {require('../images/Logo.jpg')}
+                            style = {{ width: 150, height: 150, borderRadius: 100, borderColor:"cyan", borderWidth:5, }}
+                  />
+
       </View>
   
  
@@ -73,9 +75,6 @@ const styles = StyleSheet.create({
   
   container: {
     flex: 1,
-    
-
-    
     backgroundColor: "white",
     color: "black",
   },

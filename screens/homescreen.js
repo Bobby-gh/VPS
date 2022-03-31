@@ -18,19 +18,13 @@ const HomeScreen = ({navigation}) => {
         
         </View>
       <View style={styles.navbar}>
-
-      <TouchableOpacity
-      onPress={() => navigation.navigate('Settings')}>
-      <Icon name="settings" size ={24}  style = {{ width: 30, height: 25, left: 1, }}/>
-      </TouchableOpacity>
-        
-        
-        
-         <TouchableOpacity>
-         
-        </TouchableOpacity>  
-        <Text style={{fontSize: 15}}> Settings </Text>
-        
+        <View>
+            <TouchableOpacity
+            onPress={() => navigation.navigate('Settings')}>
+               <Icon name="settings" size ={20}/>
+            </TouchableOpacity>
+            
+        </View>
       </View>
       
       <View style={styles.container1} >

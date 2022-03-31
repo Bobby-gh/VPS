@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   SafeAreaView,
@@ -12,23 +12,14 @@ import {
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import {getAuth,createUserWithEmailAndPassword} from 'firebase/auth'
+import {getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from 'firebase/app';
 import {getFirestore} from 'firebase/firestore';
+import { firebase } from '@react-native-firebase/auth';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBXrR-VyOYOR8Y02Cla5igwgvpyLVr9FdM",
-  authDomain: "vocal-protection-seeker-1.firebaseapp.com",
-  projectId: "vocal-protection-seeker-1",
-  storageBucket: "vocal-protection-seeker-1.appspot.com",
-  messagingSenderId: "63383565184",
-  appId: "1:63383565184:web:3ff0002bd5f176a7440765",
-  measurementId: "G-8VFTHK4HC2"
-};
 
-const app  = initializeApp(firebaseConfig);
 
 
 
@@ -39,17 +30,25 @@ const Login = ({navigation}) => {
     const [Password, setPassword] = useState('');
     const handlesLogin = () => {
       console.log("hi")
-      console.log(Email,Password)
+      console.log("signed in with" ,Email,Password)
       
-      createUserWithEmailAndPassword(auth,Email,Password)
+      signInWithEmailAndPassword(auth, Email,Password)
       .then(userCredentials =>{
         const user = userCredentials.user;
-        console.log(user.Email);
+        console.log(user.email);
       }).catch(err=>{
         console.log(err)
       })
       
     }
+
+    useEffect(() =>{
+      auth.onAuthStateChanged(user =>{
+        if(user){
+          navigation.navigate("Home")
+        }
+      })
+    })
    
 
   return (
@@ -93,12 +92,14 @@ const Login = ({navigation}) => {
                </View>
           <Text style={{paddingTop: 1,}}></Text> 
           <View style={{justifyContent:"center", alignItems: 'center'}}>    
-          <TouchableOpacity style={styles.button}> 
+          
           <TouchableOpacity
+          style={styles.button}
            onPress={() => handlesLogin()}>
               <Text style={{fontWeight: "bold", color: "#fff",}}>Login</Text>
+              
           </TouchableOpacity> 
-          </TouchableOpacity> 
+          
           </View> 
       </ImageBackground>
       <TouchableOpacity>

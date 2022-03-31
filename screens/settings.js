@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Icon from 'react-native-vector-icons/Feather';
 
 
 
@@ -23,11 +24,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 
 const Settings = ({navigation}) => {
+
   const [isEnabled,setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled (previousState=>!previousState)
   
   const [isEnabled1,setIsEnabled1] = useState(false);
   const togSwitch = () => setIsEnabled1 (previousState=>!previousState)  
+
+  
+  
   return (  
   <View style={styles.container}> 
     
@@ -48,10 +53,7 @@ const Settings = ({navigation}) => {
         
          <TouchableOpacity
         onPress={() => navigation.navigate('Home')}>
-        <Image source = {require('../images/BackArrow.jpg')}
-                  style = {{ width: 25, height: 13, left: 1, top: 5,}}
-       
-        />
+           <Icon name="arrow-left" size ={24}/> 
        
         </TouchableOpacity>  
      <Text style = {{color: "black", }}>  </Text>
@@ -60,7 +62,8 @@ const Settings = ({navigation}) => {
     
       
 
-     <TouchableOpacity>
+     <TouchableOpacity
+     onPress={() => navigation.navigate('Profile')}>
     <View style = {styles.settingsText}>
       <Text> Login Information</Text>
       <hr style = {{backgroundColor: "white",  width: 300,}}/> 
@@ -112,7 +115,7 @@ const Settings = ({navigation}) => {
     <TouchableOpacity
         onPress={() => navigation.navigate('Home')}>   
       <View style = {styles.settingsText}>
-        <Text> Reset </Text> 
+        <Text> Log Out </Text> 
      
        <hr style = {{backgroundColor: "white",  width: 300,}}/>  
       </View>

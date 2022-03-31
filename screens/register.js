@@ -105,7 +105,7 @@ const Registration = ({navigation}) => {
                autoCapitalize = "none"
                type="text" 
                value={Email}
-               onChangeText = {text => setEmail(text)}
+               onChangeText = {text => setemail(text)}
                />
                
         
