@@ -17,7 +17,7 @@ const stack = createNativeStackNavigator();
 export default function App() {
 
   return ( 
-    
+    <HomeScreen>
     <NavigationContainer>
       <stack.Navigator screenOptions={{header: () => null}}>
         <stack.Screen name="Register" component={Registration} />
@@ -27,7 +27,7 @@ export default function App() {
         <stack.Screen name="VoiceSettings" component={VoiceSettings} />
       </stack.Navigator>
     </NavigationContainer> 
-    
+    </HomeScreen>
   );
 }
 
