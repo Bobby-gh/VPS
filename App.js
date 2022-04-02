@@ -11,13 +11,14 @@ import Settings from './screens/settings';
 import Login from './screens/login';
 import VoiceSettings from './screens/voicesettings';
 import Registration from './screens/register';
+import Profile from './screens/profile';
 import parseErrorStack from 'react-native/Libraries/Core/Devtools/parseErrorStack';
 
 const stack = createNativeStackNavigator();
 export default function App() {
 
   return ( 
-    <HomeScreen>
+    <Profile>
     <NavigationContainer>
       <stack.Navigator screenOptions={{header: () => null}}>
         <stack.Screen name="Register" component={Registration} />
@@ -25,9 +26,10 @@ export default function App() {
         <stack.Screen name="Home" component={HomeScreen} />
         <stack.Screen name="Settings" component={Settings} />
         <stack.Screen name="VoiceSettings" component={VoiceSettings} />
+        <stack.Screen name="Profile" component={Profile} />
       </stack.Navigator>
     </NavigationContainer> 
-    </HomeScreen>
+    </Profile>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   View,
   SafeAreaView,
@@ -18,6 +18,7 @@ import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from 'firebase/app';
 import {getFirestore} from 'firebase/firestore';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBXrR-VyOYOR8Y02Cla5igwgvpyLVr9FdM",
@@ -52,7 +53,14 @@ const Login = ({navigation}) => {
       })
       
     }
-   
+    
+    useEffect(()=>{
+      auth.onAuthStateChanged(user => {
+        if(user){
+          navigation.navigate("Home")
+        }
+      })
+    })
 
   return (
     <SafeAreaView

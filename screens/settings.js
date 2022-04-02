@@ -110,9 +110,9 @@ const Settings = ({navigation}) => {
       
 
     <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}>   
+        onPress={() => navigation.navigate('Profile')}>   
       <View style = {styles.settingsText}>
-        <Text> Reset </Text> 
+        <Text> Profile </Text> 
      
        <hr style = {{backgroundColor: "white",  width: 300,}}/>  
       </View>
